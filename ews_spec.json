@@ -1,0 +1,36 @@
+{"NEWS": {
+  "requirements": [
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum",
+      "unit":"UO_0000027"
+    },
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#systolic_blood_pressure_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#heart_rate_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#oxygen_saturation_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#supplemental_oxygen_use_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#AVPU_measurement_datum"}
+  ]
+},
+"MEWS": {
+  "requirements": [
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum",
+      "unit":"UO_0000027"
+    },
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#systolic_blood_pressure_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#heart_rate_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#urine_output_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#AVPU_measurement_datum"}
+  ]
+},
+"qSOFA": {
+  "requirements": [
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum"
+    },
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#systolic_blood_pressure_measurement_datum"},
+    {"uri":"http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#glasgow_coma_scale_measurement_datum"}
+  ]
+}
+
+}
+
