@@ -10,8 +10,6 @@ if not os.path.exists('lib/temperature_conversion.py'):
 convert = import_module('lib.temperature_conversion')
 
 def calcqSOFA(person):
-    person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'] = convert.ensureCelsius(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'])
-
     score = 0
     respiratoryRate = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum']['value'])
     bp = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#systolic_blood_pressure_measurement_datum']['value'])
@@ -29,6 +27,8 @@ def calcqSOFA(person):
     return score
 
 def calcMEWS(person):
+    person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'] = convert.ensureCelsius(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'])
+
     score = 0
     respiratoryRate = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum']['value'])
     oxySat = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#oxygen_saturation_measurement_datum']['value'])
