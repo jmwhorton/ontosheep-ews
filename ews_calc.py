@@ -3,6 +3,8 @@ import os
 import requests
 
 def calcqSOFA(person):
+    person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'] = convert.ensureCelsius(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'])
+
     score = 0
     respiratoryRate = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum']['value'])
     bp = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#systolic_blood_pressure_measurement_datum']['value'])
@@ -107,14 +109,6 @@ def calcMEWS(person):
     return score
 
 def calcNEWS(person):
-    if not os.path.exists('lib/temperature_conversion.py'):
-        url = 'https://raw.githubusercontent.com/jmwhorton/ontosheep-conversion/main/conversions/temperature/temperature_conversion.py'
-        r = requests.get(url, allow_redirects=True)
-        open('lib/temperature_conversion.py', 'wb').write(r.content)
-
-
-    
-    convert = import_module('lib.temperature_conversion')
     person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'] = convert.ensureCelsius(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'])
 
     score = 0
@@ -191,6 +185,7 @@ def calcNEWS(person):
 
 def run(person, spec):
     meetsReqs = {}
+    results = {} 
     for key in spec:
         hasRequirements = True
         for requirement in spec[key]['requirements']: 
@@ -198,12 +193,20 @@ def run(person, spec):
                 hasRequirements = False
 
         meetsReqs[key] = hasRequirements
-    print (meetsReqs)
+
+    if not os.path.exists('lib/temperature_conversion.py'):
+        url = 'https://raw.githubusercontent.com/jmwhorton/ontosheep-conversion/main/conversions/temperature/temperature_conversion.py'
+        r = requests.get(url, allow_redirects=True)
+        open('lib/temperature_conversion.py', 'wb').write(r.content)
+    
+    convert = import_module('lib.temperature_conversion')
 
     if meetsReqs['NEWS']:
-        print('NEWS: ' + str(calcNEWS(person)))
+        results['NEWS'] = calcNEWS(person)
     if meetsReqs['MEWS']:
-        print('MEWS ' + str(calcMEWS(person)))
+        results['MEWS'] = calcMEWS(person)
     if meetsReqs['qSOFA']:
-        print('qSOFA ' + str(calcqSOFA(person)))
+        results['qSOFA'] = calcqSOFA(person)
+
+    return results
 
