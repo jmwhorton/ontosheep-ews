@@ -2,6 +2,13 @@ from importlib import import_module
 import os
 import requests
 
+if not os.path.exists('lib/temperature_conversion.py'):
+    url = 'https://raw.githubusercontent.com/jmwhorton/ontosheep-conversion/main/conversions/temperature/temperature_conversion.py'
+    r = requests.get(url, allow_redirects=True)
+    open('lib/temperature_conversion.py', 'wb').write(r.content)
+
+convert = import_module('lib.temperature_conversion')
+
 def calcqSOFA(person):
     person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'] = convert.ensureCelsius(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum'])
 
@@ -194,12 +201,6 @@ def run(person, spec):
 
         meetsReqs[key] = hasRequirements
 
-    if not os.path.exists('lib/temperature_conversion.py'):
-        url = 'https://raw.githubusercontent.com/jmwhorton/ontosheep-conversion/main/conversions/temperature/temperature_conversion.py'
-        r = requests.get(url, allow_redirects=True)
-        open('lib/temperature_conversion.py', 'wb').write(r.content)
-    
-    convert = import_module('lib.temperature_conversion')
 
     if meetsReqs['NEWS']:
         results['NEWS'] = calcNEWS(person)
