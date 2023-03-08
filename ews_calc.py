@@ -31,86 +31,70 @@ def calcMEWS(person):
 
     score = 0
     respiratoryRate = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#respiratory_rate_measurement_datum']['value'])
-    oxySat = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#oxygen_saturation_measurement_datum']['value'])
     temp = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#body_temperature_measurment_datum']['value'])
     bp = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#systolic_blood_pressure_measurement_datum']['value'])
     pulse = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#heart_rate_measurement_datum']['value'])
     conciousness = (person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#AVPU_measurement_datum']['value'])
     urine = float(person['http://www.semanticweb.org/zayascilia/ontologies/2022/3/untitled-ontology-8#urine_output_measurement_datum']['value'])
 
-    if respiratoryRate > 30:
+    if respiratoryRate >= 30:
         score +=3
-    elif respiratoryRate >= 25:
+    elif respiratoryRate >= 21:
         score +=2
-    elif respiratoryRate >=20:
+    elif respiratoryRate >=15:
         score += 1 
-    elif respiratoryRate >= 14:
+    elif respiratoryRate >= 9:
         score += 0
-    elif respiratoryRate >= 10:
-        score += 1
     else:
         score += 2 
 
     if bp >= 200:
         score += 2 
-    elif bp >= 160:
+    elif bp >= 101:
+        score += 0
+    elif bp >= 81:
         score += 1
-    elif bp >= 110:
-        score += 0 
-    elif bp >= 80:
-        score += 1
-    elif bp >= 70:
+    elif bp >= 71:
         score += 2
     else:
         score += 3
 
-    if pulse >= 131:
+    if pulse > 129:
         score += 3
-    elif pulse >= 120:
+    elif pulse >= 111:
         score += 2
-    elif pulse >= 100:
+    elif pulse >= 101:
         score += 1
-    elif pulse >= 50:
+    elif pulse >= 51:
         score += 0
     elif pulse >= 40:
         score += 1
     else:
         score += 2 
 
-    if temp > 39:
+    if temp >= 38.6:
         score += 2
-    elif temp >= 38:
+    elif temp >= 38.1:
         score += 1
-    elif temp >= 36:
+    elif temp >= 36.1:
         score += 0
-    elif temp >= 35:
+    elif temp >= 35.1:
         score += 1
     else:
         score += 2 
 
-    if urine > 300:
+    if urine < 10:
         score += 3
-    elif urine >= 201:
+    elif urine < 30:
         score += 2
-    elif urine >= 30:
-        score += 0
-    elif urine >= 10:
-        score +=1 
-    else: 
-        score += 3
+    elif urine < 45:
+        score += 1
 
     if conciousness == 'Unresponsive':
         score += 3
     elif conciousness == 'Pain':
         score += 2
     elif conciousness == 'Vocal':
-        score += 1
-
-    if oxySat < 88:
-        score += 3
-    elif oxySat <= 91:
-        score += 2
-    elif oxySat <= 95:
         score += 1
 
     return score
@@ -171,15 +155,15 @@ def calcNEWS(person):
         score += 3
 
     if pulse >= 131:
-        score += 2
+        score += 3
     elif pulse >= 111:
-        score += 1
-    elif pulse >= 91:
-        score += 0
-    elif pulse >= 51:
-        score += 1
-    elif pulse >= 41:
         score += 2
+    elif pulse >= 91:
+        score += 1
+    elif pulse >= 51:
+        score += 0
+    elif pulse >= 41:
+        score += 1
     else:
         score += 3
 
